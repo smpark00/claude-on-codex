@@ -40,4 +40,4 @@ This work prepares a local alpha. It does not create a GitHub repository, publis
 
 ## Remaining release gates
 
-Remote Linux/macOS CI, manual Codex app UI checks, a live-provider rerun for this candidate, repository ownership, and private vulnerability reporting are still required before public release. Authentication was rechecked successfully after the user logged in; candidate live-provider smoke tests remain pending. The plugin did not change account configuration. See [validation evidence](VALIDATION.md).
+The source is hosted in a private repository, and the Ubuntu/macOS CI matrix has passed on Node.js 22 and 24. Manual Codex app UI checks, a live-provider rerun for this candidate, public maintainer/support information, and private vulnerability reporting are still required before public release. Authentication was rechecked successfully after the user logged in; candidate live-provider smoke tests remain pending. The plugin did not change account configuration. See [validation evidence](VALIDATION.md).

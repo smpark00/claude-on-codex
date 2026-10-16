@@ -44,11 +44,25 @@ No model requests were made during this hardening pass. Authentication initially
 
 The earlier 0.1.0 prototype completed real advise, review, and edit smoke requests and a Codex skill-to-Claude round trip. That historical result is not a live-provider certification of this candidate. Its private account/job records are intentionally absent from this public document.
 
+## Remote CI
+
+The [Checks run for commit `b55ee43`](https://github.com/smpark00/claude-on-codex/actions/runs/38902415226) passed in all four environments on 2026-10-16:
+
+| Runner | Node.js | Regression tests | Codex installation | Distribution artifacts |
+| --- | --- | --- | --- | --- |
+| Ubuntu | 22 | 32 passed | Passed | Passed |
+| Ubuntu | 24 | 32 passed | Passed | Passed |
+| macOS | 22 | 32 passed | Passed | Passed |
+| macOS | 24 | 32 passed | Passed | Passed |
+
+Manifest, syntax, public-document, and staged-document checks passed in every job. The first run exposed a test-fixture difference: Git on the runners skipped staging a submodule configured with `ignore=all`. The fixture now explicitly forces that staging operation and asserts that the index contains the intended change. No runtime restriction or test assertion was removed.
+
+CI uses the mock Claude executable and makes no model requests. The repository is private; its Actions evidence requires repository access until publication.
+
 ## Remaining verification
 
-- Remote GitHub Actions on the actual repository, especially Linux. The local Docker daemon was unavailable; no Linux execution is claimed.
 - Manual Codex app UI flows and a live-provider rerun using the authenticated CLI.
 - Real-provider resume/cancellation, enterprise authentication backends, large repositories, and organization-specific policies.
 - Full upstream schema validation for this candidate. Local manifest checks and actual Codex installation passed; these do not constitute vendor approval.
 
-Windows is unsupported. This record documents local candidate checks. A private source upload does not establish a public release, directory approval, or vendor endorsement.
+Windows is unsupported. This record documents local and remote candidate checks. A private source upload does not establish a public release, directory approval, or vendor endorsement.

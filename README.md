@@ -37,7 +37,7 @@ Jobs can run in the background. Inspect progress, retrieve results, cancel work,
 | **Claude Code** | Official CLI, authenticated and available on PATH; verified with `2.1.301` |
 | **Repository** | At least one commit for review/edit; a clean repository root for edit |
 
-The `doctor` command checks Claude CLI capabilities rather than assuming compatibility from its version. Local regression checks have passed on macOS with Node.js 22 and 24; Linux CI execution remains pending.
+The `doctor` command checks Claude CLI capabilities rather than assuming compatibility from its version. Regression, installation, and artifact checks have passed in GitHub Actions on Ubuntu and macOS with Node.js 22 and 24. See the [validation record](docs/VALIDATION.md) for evidence.
 
 ### 2. Install from this checkout
 
@@ -183,7 +183,7 @@ No `npm install` is required. Development checks use a mock Claude CLI and do no
 | `npm run test:artifacts` | Extract and verify the source and standalone plugin ZIPs | Codex CLI, `zip`, `unzip` |
 | `npm run pack:plugin` | Build both ZIPs and SHA-256 sidecars in `dist/` | `zip` |
 
-The recorded local baseline is **32 passing tests on Node.js 22 and 24 on macOS**, including patch, submodule, authentication, cancellation, and distribution regressions. Workflow configuration also covers Linux; a passing remote CI run is still a release prerequisite. Read the [validation evidence](docs/VALIDATION.md) for the distinction between mock, installation, and live-provider checks.
+The recorded baseline is **32 passing tests in each Ubuntu/macOS and Node.js 22/24 CI combination**, including patch, submodule, authentication, cancellation, and distribution regressions. Each job also verifies Codex installation and both distribution artifacts. Read the [validation evidence](docs/VALIDATION.md) for the distinction between mock, installation, and live-provider checks.
 
 Real-provider smoke tests are opt-in and consume usage. See [testing](docs/TESTING.md) before running them.
 
