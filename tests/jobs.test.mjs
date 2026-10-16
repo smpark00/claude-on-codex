@@ -14,13 +14,28 @@ const exec = promisify(execFile);
 const cli = fileURLToPath(new URL('../plugins/claude-on-codex/scripts/companion.mjs', import.meta.url));
 const fixture = fileURLToPath(new URL('./fixtures/claude.mjs', import.meta.url));
 fs.chmodSync(fixture, 0o755);
+async function waitForWorkerExit(pid) {
+  assert.ok(Number.isSafeInteger(pid) && pid > 0, 'Expected a worker PID');
+  const deadline = Date.now() + 5000;
+  while (true) {
+    try { process.kill(pid, 0); }
+    catch (error) { if (error.code === 'ESRCH') return; throw error; }
+    assert.ok(Date.now() < deadline, `Worker ${pid} did not exit before fixture cleanup`);
+    await new Promise(resolve => setTimeout(resolve, 20));
+  }
+}
 function context(t) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'claude-on-codex-test-')));
   const workspace = path.join(root, 'workspace'), home = path.join(root, 'private-state');
   fs.mkdirSync(workspace);
   const env = { ...process.env, CLAUDE_ON_CODEX_HOME: home, CLAUDE_ON_CODEX_CLI: fixture, CODEX_THREAD_ID: 'thread-a', MOCK_PRIVATE_SECRET: 'not-for-child' };
   delete env.CLAUDE_ON_CODEX_DEPTH;
-  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const workerPids = new Set();
+  t.after(async () => {
+    // Terminal job state can precede the worker's final diagnostic write.
+    await Promise.all([...workerPids].map(waitForWorkerExit));
+    fs.rmSync(root, { recursive: true, force: true });
+  });
   async function invoke(command, options = [], acceptFailure = false, extraEnv = {}) {
     let result;
     try { result = await exec(process.execPath, [cli, command, ...options], { env: { ...env, ...extraEnv }, timeout: 20000 }); }
@@ -30,7 +45,9 @@ function context(t) {
   async function start(request, acceptFailure = false) {
     const file = path.join(root, `${randomUUID()}.json`);
     fs.writeFileSync(file, JSON.stringify({ workspace, ...request }));
-    return invoke('start', ['--request', file], acceptFailure);
+    const result = await invoke('start', ['--request', file], acceptFailure);
+    if (result.workerPid) workerPids.add(result.workerPid);
+    return result;
   }
   const query = (command, job, acceptFailure = false, extraEnv) => invoke(command, ['--workspace', workspace, '--job', job.id], acceptFailure, extraEnv);
   const jobDir = id => path.join(home, digest(workspace).slice(0, 24), id);
@@ -203,10 +220,7 @@ test('cleanup requires explicit discard, refuses active jobs, and removes a fini
   const edited = await c.start({ mode: 'edit', prompt: 'TEST:EDIT', allowedPaths: ['source.txt', 'new.txt'], background: false });
   const refused = await c.query('cleanup', edited, true);
   assert.match(refused.error, /--discard true/);
-  for (let i = 0; i < 100; i++) {
-    try { process.kill(edited.workerPid, 0); } catch (error) { if (error.code === 'ESRCH') break; throw error; }
-    await new Promise(resolve => setTimeout(resolve, 20));
-  }
+  await waitForWorkerExit(edited.workerPid);
   const cleaned = await c.invoke('cleanup', ['--workspace', c.workspace, '--job', edited.id, '--discard', 'true']);
   assert.equal(cleaned.removed, true); assert.equal(cleaned.claudeHistoryRemoved, false);
   assert.equal(fs.existsSync(c.jobDir(edited.id)), false);

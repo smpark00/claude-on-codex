@@ -12,6 +12,7 @@ First public prerelease. Independent community alpha for macOS and Linux. See [v
 - Package an explicit file inventory instead of recursively copying directories that can contain ignored secrets.
 - Distinguish an explicitly logged-out CLI from a failed or malformed authentication check without echoing sensitive output.
 - Explicitly stage the ignored submodule in regression fixtures so the test covers a real index change across Git versions.
+- Wait for test workers to exit before removing their fixtures, avoiding a race with final diagnostic writes.
 
 ### Added
 
