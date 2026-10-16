@@ -9,6 +9,7 @@
 - Reject dangling edited symlinks without rejecting ordinary deletions.
 - Package an explicit file inventory instead of recursively copying directories that can contain ignored secrets.
 - Distinguish an explicitly logged-out CLI from a failed or malformed authentication check without echoing sensitive output.
+- Explicitly stage the ignored submodule in regression fixtures so the test covers a real index change across Git versions.
 
 ### Added
 

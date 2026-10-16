@@ -143,7 +143,9 @@ test('staged and committed submodule updates are rejected despite ignore setting
   git(module, ['config', 'user.name', 'Test']); git(module, ['config', 'user.email', 'test@example.invalid']);
   fs.writeFileSync(path.join(module, 'source.txt'), 'dependency update\n');
   git(module, ['add', '.']); git(module, ['commit', '-m', 'Update dependency']);
-  git(dir, ['add', 'deps/library']);
+  // Git versions that honor submodule ignore=all during add need an explicit override.
+  git(dir, ['add', '--force', '--', 'deps/library']);
+  assert.equal(git(dir, ['diff', '--cached', '--name-only', '--ignore-submodules=none']).trim(), 'deps/library');
   assert.throws(() => collectReview(dir), /[Ss]ubmodule/);
   git(dir, ['commit', '-m', 'Update gitlink']);
   assert.throws(() => collectReview(dir, base), /[Ss]ubmodule/);
