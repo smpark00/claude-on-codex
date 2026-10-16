@@ -2,7 +2,7 @@
 
 ## Candidate and environment
 
-Candidate: `0.2.0-alpha.1`. Verification date: 2026-10-16.
+Release: `v0.2.0-alpha.1` (community prerelease). Verification date: 2026-10-16.
 
 | Component | Observed version/environment |
 | --- | --- |
@@ -79,4 +79,6 @@ This was a targeted content review, not a comprehensive security audit or a guar
 - Manual Codex app UI onboarding, invocation, cancellation, and error-message flows for this candidate.
 - Real-provider resume/cancellation, enterprise authentication backends, large repositories, and organization-specific policies.
 
-Windows is unsupported. This record supports public source access as an independent community alpha. It does not establish a stable release, directory approval, or vendor endorsement.
+During release preparation, the computer-control tool refused access to the native Codex app for safety reasons. No alternate UI automation was used to bypass that restriction. The first prerelease therefore carries this explicit app UI verification limitation. Automated process-cancellation and error-handling tests use the mock provider and do not replace app UI or real-provider lifecycle checks.
+
+Windows is unsupported. This record supports the documented independent community prerelease. It does not establish a stable release, directory approval, or vendor endorsement.

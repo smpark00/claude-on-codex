@@ -14,6 +14,8 @@ Ask Claude to review a change, challenge a design, or prepare a patch without le
 
 > **Alpha:** This project is independently developed and is not an official OpenAI or Anthropic product. See the [validation record](docs/VALIDATION.md) for tested environments and remaining release checks.
 
+Download [v0.2.0-alpha.1](https://github.com/smpark00/claude-on-codex/releases/tag/v0.2.0-alpha.1) for the versioned source/plugin ZIPs, SHA-256 checksums, and release notes. Codex CLI installation and live Claude requests are verified; native Codex app UI flows remain unverified.
+
 ## Workflows
 
 | You want to… | Mode | What comes back |
@@ -44,7 +46,7 @@ The `doctor` command checks Claude CLI capabilities rather than assuming compati
 Clone the repository and run the installation commands from its root:
 
 ```sh
-git clone https://github.com/smpark00/claude-on-codex.git
+git clone --branch v0.2.0-alpha.1 --depth 1 https://github.com/smpark00/claude-on-codex.git
 cd claude-on-codex
 codex plugin marketplace add "$PWD"
 codex plugin add claude-on-codex@claude-on-codex
@@ -52,6 +54,8 @@ codex plugin list
 ```
 
 These commands add the local marketplace and enable the plugin in your Codex configuration.
+
+Alternatively, extract `claude-on-codex-0.2.0-alpha.1.zip` from the release, open a terminal in its `claude-on-codex` directory, and run the three `codex plugin` commands above. The source ZIP includes the local marketplace; the smaller standalone plugin ZIP does not.
 
 ### 3. Ask Claude from Codex
 
@@ -96,7 +100,7 @@ Codex supplies the explicit allowed paths. The result includes a patch and its w
 
 </details>
 
-**Updating a local installation:** update the checkout, repeat the install commands, and start a new session. Codex runs a cached copy, so editing this checkout alone does not update an installed plugin. See [troubleshooting](docs/TROUBLESHOOTING.md) if the skills are missing.
+**Updating a local installation:** obtain the next release's checkout or source ZIP, repeat the install commands from that directory, and start a new session. Codex runs a cached copy, so editing a source checkout alone does not update an installed plugin. See [troubleshooting](docs/TROUBLESHOOTING.md) if the skills are missing.
 
 ## How it works
 

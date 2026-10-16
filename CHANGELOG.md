@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.2.0-alpha.1 — Unreleased
+## 0.2.0-alpha.1 — 2026-10-16
+
+First public prerelease. Independent community alpha for macOS and Linux. See [validation evidence](docs/VALIDATION.md) for tested paths and remaining app UI checks.
 
 ### Fixed
 

@@ -2,7 +2,9 @@
 
 ## Current status
 
-The current candidate is `0.2.0-alpha.1`, an independent community implementation hosted at [smpark00/claude-on-codex](https://github.com/smpark00/claude-on-codex). Public source access is separate from a tagged distribution release. Build scripts only create local archives; they do not publish releases or submit the plugin to a directory.
+The first public prerelease is [v0.2.0-alpha.1](https://github.com/smpark00/claude-on-codex/releases/tag/v0.2.0-alpha.1), an independent community alpha. Build scripts only create local archives; publishing a GitHub release and submitting the plugin to a directory are separate operations.
+
+This prerelease records an explicit verification limitation: native Codex app UI checks could not be performed because the computer-control tool denied access to the app. CLI installation, app-server skill discovery, offline lifecycle checks, and live Claude advice/review/edit requests are the available evidence. This limitation is stated in the README, validation record, and release notes; app UI behavior is not marked as passed.
 
 ## Public source access
 
