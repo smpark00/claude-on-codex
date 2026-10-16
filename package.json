@@ -1,0 +1,24 @@
+{
+  "name": "claude-on-codex",
+  "version": "0.2.0-alpha.1",
+  "private": true,
+  "type": "module",
+  "description": "Delegate tasks from Codex to the official Claude Code CLI.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node scripts/validate.mjs",
+    "check": "npm test && npm run validate && npm run check:docs",
+    "doctor": "node plugins/claude-on-codex/scripts/companion.mjs doctor",
+    "test:live": "node scripts/live-smoke.mjs",
+    "test:install": "node scripts/install-smoke.mjs",
+    "pack:plugin": "node scripts/package.mjs",
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:staged": "node scripts/check-docs.mjs --staged",
+    "setup:hooks": "git config core.hooksPath .githooks",
+    "test:artifacts": "node scripts/artifact-smoke.mjs"
+  }
+}

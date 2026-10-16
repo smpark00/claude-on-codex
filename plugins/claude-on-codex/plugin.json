@@ -1,0 +1,37 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "claude-on-codex",
+  "version": "0.2.0-alpha.1",
+  "description": "Delegate advice, code reviews, and isolated edits from Codex to the official Claude Code CLI. Independent community plugin.",
+  "author": {
+    "name": "Claude on Codex contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "orchestration",
+    "agents",
+    "codex",
+    "claude-code",
+    "review",
+    "delegation"
+  ],
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "onboardingSkill": "./skills/setup/SKILL.md",
+      "interface": {
+        "displayName": "Claude on Codex",
+        "shortDescription": "Use Claude Code from inside Codex",
+        "developerName": "Independent community project",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "defaultPrompt": [
+          "Ask Claude to review my current changes."
+        ]
+      }
+    }
+  }
+}
