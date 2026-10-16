@@ -39,11 +39,13 @@ Jobs can run in the background. Inspect progress, retrieve results, cancel work,
 
 The `doctor` command checks Claude CLI capabilities rather than assuming compatibility from its version. Regression, installation, and artifact checks have passed in GitHub Actions on Ubuntu and macOS with Node.js 22 and 24. See the [validation record](docs/VALIDATION.md) for evidence.
 
-### 2. Install from this checkout
+### 2. Clone and install
 
-Open a terminal in the **claude-on-codex project root**, then run:
+Clone the repository and run the installation commands from its root:
 
 ```sh
+git clone https://github.com/smpark00/claude-on-codex.git
+cd claude-on-codex
 codex plugin marketplace add "$PWD"
 codex plugin add claude-on-codex@claude-on-codex
 codex plugin list
@@ -188,6 +190,12 @@ The recorded baseline is **32 passing tests in each Ubuntu/macOS and Node.js 22/
 Real-provider smoke tests are opt-in and consume usage. See [testing](docs/TESTING.md) before running them.
 
 Contributions are welcome. Public documentation is written in English; personal or Korean notes belong in the ignored `.local-notes/` directory and are excluded from releases. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Support and maintenance
+
+Maintained by [@smpark00](https://github.com/smpark00) and contributors. Use [GitHub Issues](https://github.com/smpark00/claude-on-codex/issues) for reproducible bugs and feature requests. Report sensitive security issues through the private channel in [SECURITY.md](SECURITY.md).
+
+This is an early community alpha with no response-time or compatibility guarantee. The validation record lists known gaps; review generated advice and test patches before relying on them.
 
 ## Documentation
 

@@ -2,16 +2,21 @@
 
 ## Current status
 
-The local target is `0.2.0-alpha.1`. No public repository, release, directory submission, or vendor endorsement is created by the build scripts. The project is an independent community implementation.
+The current candidate is `0.2.0-alpha.1`, an independent community implementation hosted at [smpark00/claude-on-codex](https://github.com/smpark00/claude-on-codex). Public source access is separate from a tagged distribution release. Build scripts only create local archives; they do not publish releases or submit the plugin to a directory.
 
-## Before the first public release
+## Public source access
 
-1. Choose the repository owner and maintainer identity. Configure Git authorship without committing personal local records.
-2. Enable GitHub private vulnerability reporting and set the real support/reporting links. Verify publisher attribution in the manifest.
-3. Review the staged index, English documentation, license/attribution, and `release-files.json`. Keep local notes, credentials, and diagnostics out of Git.
-4. Run the full CI matrix on the actual repository. Complete manual Codex app onboarding, invocation, cancellation, and error-message checks.
-5. Run explicitly authorized live smoke checks for the release candidate. Record the actual versions and distinguish mock evidence from live evidence.
-6. Review the finished archives, checksums, changelog, and known limitations before tagging or uploading.
+The repository owner and maintainer is [@smpark00](https://github.com/smpark00). Support and private reporting links are documented in the README and [security policy](../SECURITY.md). Keep private vulnerability reporting enabled while the repository is public.
+
+Before opening access, review committed history and Actions logs for private content, verify the English documentation and MIT attribution, and check the full CI matrix. Record live-provider evidence and known verification gaps in [VALIDATION.md](VALIDATION.md). Public source availability does not imply stable-version support.
+
+## Before a tagged release
+
+1. Review the staged index, English documentation, license/attribution, and `release-files.json`. Keep local notes, credentials, and diagnostics out of Git.
+2. Verify the support/reporting links and accurate independent-project attribution.
+3. Run the full CI matrix on the actual candidate. Complete manual Codex app onboarding, invocation, cancellation, and error-message checks.
+4. Run explicitly authorized live smoke checks for that candidate. Record actual versions and distinguish mock evidence from live evidence.
+5. Review the finished archives, checksums, changelog, and known limitations before tagging or uploading.
 
 ## Build and verify
 

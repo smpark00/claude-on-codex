@@ -20,6 +20,8 @@ Model output and repository text remain untrusted. Review findings are not proof
 
 ## Reporting a vulnerability
 
-Before the first public release, the repository owner must enable GitHub private vulnerability reporting and publish the actual reporting link. This local alpha has no public reporting endpoint yet. Once enabled, use the repository's **Security → Report a vulnerability** flow rather than a public issue for sensitive details.
+Use [GitHub private vulnerability reporting](https://github.com/smpark00/claude-on-codex/security/advisories/new), also available under **Security → Report a vulnerability**. Reports go to the repository maintainer, [@smpark00](https://github.com/smpark00). Do not post sensitive details in a public issue.
+
+If GitHub's reporting form is unavailable, open an issue asking only for a private contact channel; omit vulnerability details until a private channel is available.
 
 Provide a minimal synthetic reproduction, affected version, expected impact, and safe logs. Never include credentials, real account identifiers, private source, or complete job-state directories. No response-time or security-update SLA is currently offered. See the [release prerequisites](docs/RELEASE.md).

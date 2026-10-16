@@ -1,6 +1,6 @@
 # Open-source readiness plan
 
-Status: implemented and locally verified. Target: `0.2.0-alpha.1`, an independent community alpha.
+Status: hardening implemented; local, remote CI, and live-provider checks passed. Target: `0.2.0-alpha.1`, an independent community alpha.
 
 ## Release goals
 
@@ -32,12 +32,12 @@ Status: implemented and locally verified. Target: `0.2.0-alpha.1`, an independen
 - Authentication command failures do not prompt an unnecessary login.
 - Public Markdown contains no Korean text or machine-specific user paths.
 - CI covers Node.js 22 and 24 on macOS and Linux, without credentials or model calls.
-- Validation records distinguish local evidence from pending remote CI and live-provider checks.
+- Validation records distinguish local, remote CI, and live-provider evidence from unverified behavior.
 
 ## Publication boundary
 
-This work prepares a local alpha. It does not create a GitHub repository, publish a release, claim vendor endorsement, or establish stable-version support. Before public release, configure repository ownership and private vulnerability reporting, run remote CI, and review the final staged files and archives.
+The source is hosted at [smpark00/claude-on-codex](https://github.com/smpark00/claude-on-codex), maintained by [@smpark00](https://github.com/smpark00). The README and security policy provide support and private vulnerability reporting links. Public source access is appropriate for this documented alpha; it does not establish a tagged release, vendor endorsement, or stable-version support.
 
-## Remaining release gates
+## Remaining verification
 
-The source is hosted in a private repository, and the Ubuntu/macOS CI matrix has passed on Node.js 22 and 24. Manual Codex app UI checks, a live-provider rerun for this candidate, public maintainer/support information, and private vulnerability reporting are still required before public release. Authentication was rechecked successfully after the user logged in; candidate live-provider smoke tests remain pending. The plugin did not change account configuration. See [validation evidence](VALIDATION.md).
+The Ubuntu/macOS CI matrix passed on Node.js 22 and 24. Authenticated live advice, review, and edit smoke tests and upstream manifest schema validation also passed. Manual Codex app UI checks, real-provider resume/cancellation, and broader environment testing remain outstanding. Complete the [tagged-release prerequisites](RELEASE.md) before distributing a release. See [validation evidence](VALIDATION.md) for the exact scope of completed checks.
